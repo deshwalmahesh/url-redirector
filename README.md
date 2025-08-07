@@ -4,6 +4,12 @@
 
 This Chrome extension allows you to redirect URLs based on user-defined rules. You can create rules using regular expressions to match source URLs and specify the destination URL for redirection.
 
+# Demo
+
+
+https://github.com/user-attachments/assets/234c01b3-54a1-4fd6-9abf-52173c64e43d
+
+
 ## How to Install
 
 1.  **Download or clone this repository.**
