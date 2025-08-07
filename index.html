@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Redirector</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <img src="icons/2.png" alt="URL Redirector Icon" class="header-icon">
+        <h2>URL Redirector</h2>
+
+        <h3>Add/Modify Rule</h3>
+        <form id="rule-form">
+            <input type="hidden" id="rule-id">
+            <input type="text" id="source-regex" placeholder="Source URL (Regex)" required>
+            <input type="text" id="destination-url" placeholder="Destination URL" required>
+            <button type="submit">Save Rule</button>
+        </form>
+
+        <h4>Redirect Rules</h4>
+        <div class="table-container">
+            <table id="rules-table">
+                <thead>
+                    <tr>
+                        <th>Enabled</th>
+                        <th>Source (Regex)</th>
+                        <th>Destination</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Rules will be inserted here by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

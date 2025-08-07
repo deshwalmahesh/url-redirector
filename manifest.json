@@ -1,0 +1,28 @@
+{
+    "manifest_version": 3,
+    "name": "URL Redirector",
+    "version": "1.0",
+    "description": "Redirects URLs based on user-defined rules.",
+    "permissions": [
+        "storage",
+        "declarativeNetRequest"
+    ],
+    "host_permissions": [
+        "<all_urls>"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "options_ui": {
+        "page": "index.html",
+        "open_in_tab": true
+    },
+    "action": {
+        "default_title": "URL Redirector",
+        "default_popup": "index.html",
+        "default_icon": "icons/2.png"
+    },
+    "icons": {
+        "128": "icons/2.png"
+    }
+}
