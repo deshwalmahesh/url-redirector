@@ -141,6 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 { id: 5, source: 'https://arxiv.org/(.*)', destination: 'https://www.alphaxiv.org/$1', enabled: true },
                 { id: 6, source: 'https://www.amazon.in/(.*)', destination: 'https://www.uusc.org/extreme-poverty-is-on-the-rise-we-must-not-let-this-trend-continue%EF%BF%BC/', enabled: true },
                 { id: 7, source: 'https://www.myntra.com/(.*)', destination: 'https://www.uusc.org/extreme-poverty-is-on-the-rise-we-must-not-let-this-trend-continue%EF%BF%BC/', enabled: true },
+                { id: 8, source: 'https://www.ajio.com/(.*)', destination: 'https://www.globalcitizen.org/en/content/extreme-poverty-definition-statistics-rate/', enabled: true },
                 { id: 8, source: 'https://www.flipkart.com/(.*)', destination: 'https://www.uusc.org/extreme-poverty-is-on-the-rise-we-must-not-let-this-trend-continue%EF%BF%BC/', enabled: true },
             ];
         }
