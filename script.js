@@ -8,22 +8,32 @@ document.addEventListener('DOMContentLoaded', () => {
     let rules = [];
 
     const saveRules = () => {
-        chrome.storage.local.set({ redirectRules: rules }, () => {
-            console.log('Rules saved:', rules);
-        });
+        if (chrome && chrome.storage && chrome.storage.local) {
+            chrome.storage.local.set({ redirectRules: rules }, () => {
+                console.log('Rules saved to chrome.storage:', rules);
+            });
+        } else {
+            localStorage.setItem('redirectRules', JSON.stringify(rules));
+            console.log('Rules saved to localStorage:', rules);
+        }
     };
 
     const renderRules = () => {
         rulesTableBody.innerHTML = '';
         rules.forEach(rule => {
             const row = document.createElement('tr');
+            row.dataset.id = rule.id;
             row.innerHTML = `
-                <td><input type="checkbox" class="enabled-checkbox" data-id="${rule.id}" ${rule.enabled ? 'checked' : ''}></td>
-                <td>${rule.source}</td>
-                <td>${rule.destination}</td>
+                <td>
+                    <label class="switch">
+                        <input type="checkbox" class="enabled-checkbox" data-id="${rule.id}" ${rule.enabled ? 'checked' : ''}>
+                        <span class="slider round"></span>
+                    </label>
+                </td>
+                <td><input type="text" class="rule-input source-input" value="${rule.source}"></td>
+                <td><input type="text" class="rule-input destination-input" value="${rule.destination}"></td>
                 <td class="actions-cell">
-                    <button class="edit-btn" data-id="${rule.id}">Edit</button>
-                    <button class="delete-btn" data-id="${rule.id}">Delete</button>
+                    <button class="delete-btn" data-id="${rule.id}">X</button>
                 </td>
             `;
             rulesTableBody.appendChild(row);
@@ -67,19 +77,42 @@ document.addEventListener('DOMContentLoaded', () => {
             rules = rules.filter(rule => rule.id != id);
             saveRules();
             renderRules();
-        } else if (e.target.classList.contains('edit-btn')) {
-            sourceRegexInput.value = rule.source;
-            destinationUrlInput.value = rule.destination;
-            ruleIdInput.value = rule.id;
         } else if (e.target.classList.contains('enabled-checkbox')) {
             rule.enabled = e.target.checked;
-            saveRules();
+            // No save here, will be saved with "Update All"
         }
     });
 
-    chrome.storage.local.get('redirectRules', (data) => {
-        const loadedRules = data.redirectRules || [];
-        
+    document.getElementById('update-all-btn').addEventListener('click', () => {
+        const rows = rulesTableBody.querySelectorAll('tr');
+        const updatedRules = [];
+        rows.forEach(row => {
+            const id = row.dataset.id;
+            const rule = rules.find(r => r.id == id);
+            if (rule) {
+                const source = row.querySelector('.source-input').value;
+                const destination = row.querySelector('.destination-input').value;
+                const enabled = row.querySelector('.enabled-checkbox').checked;
+                updatedRules.push({ ...rule, source, destination, enabled });
+            }
+        });
+        rules = updatedRules;
+        saveRules();
+        alert('All rules have been updated!');
+    });
+
+    const loadRules = (callback) => {
+        if (chrome && chrome.storage && chrome.storage.local) {
+            chrome.storage.local.get('redirectRules', (data) => {
+                callback(data.redirectRules || []);
+            });
+        } else {
+            const storedRules = localStorage.getItem('redirectRules');
+            callback(storedRules ? JSON.parse(storedRules) : []);
+        }
+    };
+
+    loadRules((loadedRules) => {
         if (loadedRules.length > 0) {
             const fixedRules = [];
             const seenIds = new Set();
