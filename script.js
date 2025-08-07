@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    const renderRules = () => {
+    const renderRules = () => { 
         rulesTableBody.innerHTML = '';
         rules.forEach(rule => {
             const row = document.createElement('tr');
