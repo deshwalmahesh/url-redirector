@@ -137,11 +137,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 { id: 1, source: 'https://www.instagram.com/(.*)', destination: 'https://www.alphaxiv.org/', enabled: true },
                 { id: 2, source: 'https://www.facebook.com/(.*)', destination: 'https://colab.research.google.com/', enabled: true },
                 { id: 3, source: 'https://twitter.com/(.*)', destination: 'https://github.com/', enabled: true },
-                { id: 4, source: 'https://x.com/(.*)', destination: 'https://leetcode.com/', enabled: true },
+                { id: 4, source: 'https://x.com/(.*)', destination: 'https://kaggle.com/', enabled: true },
                 { id: 5, source: 'https://arxiv.org/(.*)', destination: 'https://www.alphaxiv.org/$1', enabled: true },
-                { id: 6, source: 'https://www.amazon.in/(.*)', destination: 'https://www.globalcitizen.org/en/content/extreme-poverty-definition-statistics-rate/', enabled: true },
-                { id: 7, source: 'https://www.myntra.com/(.*)', destination: 'https://www.globalcitizen.org/en/content/extreme-poverty-definition-statistics-rate/', enabled: true },
-                { id: 8, source: 'https://www.flipkart.com/(.*)', destination: 'https://www.globalcitizen.org/en/content/extreme-poverty-definition-statistics-rate/', enabled: true },
+                { id: 6, source: 'https://www.amazon.in/(.*)', destination: 'https://www.uusc.org/extreme-poverty-is-on-the-rise-we-must-not-let-this-trend-continue%EF%BF%BC/', enabled: true },
+                { id: 7, source: 'https://www.myntra.com/(.*)', destination: 'https://www.uusc.org/extreme-poverty-is-on-the-rise-we-must-not-let-this-trend-continue%EF%BF%BC/', enabled: true },
+                { id: 8, source: 'https://www.flipkart.com/(.*)', destination: 'https://www.uusc.org/extreme-poverty-is-on-the-rise-we-must-not-let-this-trend-continue%EF%BF%BC/', enabled: true },
             ];
         }
         
